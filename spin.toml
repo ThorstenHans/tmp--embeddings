@@ -1,0 +1,23 @@
+spin_manifest_version = 2
+
+[application]
+authors = ["Thorsten Hans <thorsten.hans@fermyon.com>"]
+description = ""
+name = "blog-recommendation-ts"
+version = "0.1.0"
+
+[[trigger.http]]
+route = "/..."
+component = "blog-recommendation-ts"
+
+[component.blog-recommendation-ts]
+source = "target/blog-recommendation-ts.wasm"
+exclude_files = ["**/node_modules"]
+key_value_stores = ["default"]
+sqlite_databases = ["default"]
+allowed_outbound_hosts = ["https://www.fermyon.com/"]
+ai_models = ["all-minilm-l6-v2"]
+
+[component.blog-recommendation-ts.build]
+command = "npm run build"
+watch = ["src/**/*.ts", "package.json"]
